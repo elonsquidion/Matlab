@@ -1,6 +1,6 @@
 clear
 clc
-% xi = input("Masukkan nilai tebakan x: ");
+
 x1 = linspace(0,1,100);
 x2 = 1-x1;
 y1 = zeros(1, length(x1));
@@ -8,8 +8,7 @@ y2 = zeros(1, length(x1));
 T = zeros(1, length(x1));
 
 for xi = 1:length(x1)
-    T(xi) = newtonRhapson(0.001, 100, x1(xi));
-    disp(T(xi));
+    T(xi) = newtonRhapson(0.001, 0.1, x1(xi));
 end
 
 function fp = Pp(T, i)
@@ -34,12 +33,11 @@ function answer = newtonRhapson(ftol, T, i)
     while true
         t1 = t0 - (Pp(t0, i)/dPp(t0, i));
         f = Pp(t1, i);
-        if abs(f) < ftol || iterasi >= 100
+        if abs(f) < ftol || iterasi >= 2
             break
         else
             t0 = t1;
         end
-        % disp(t1);
         iterasi = iterasi + 1;
     end
     answer = t1;
