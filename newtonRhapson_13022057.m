@@ -17,7 +17,7 @@ function fx = fungsi(x)
 end
 
 function dfx = turunan(x)
-    dfx = (((x+eps(1))^2 -2) - (x^2 - 2))/(eps(1));
+    dfx = (((x+1e-6)^2 -2) - (x^2 - 2))/(1e-6);
 end
 
 function answer = newtonRhapson(xx0, xx1, fftol, xxtol)
