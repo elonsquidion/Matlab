@@ -28,10 +28,6 @@ function Pstar = Antoine(T, i)
     end
 end
 
-function z = f(x, y)
-    z = 2.8x^2(x^2(2.5x^2+y^2-2)+1.2y^2(y(3y-0.75)-6.0311)+3.09) + 0.98y^2((y^2-3.01)y^2+3) - 1.005
-end
-
 function dp = dPp(T, i)
     eps = 1e-6;
     dp = (f(T + eps, i) - f(T, i)) / eps;
@@ -41,8 +37,8 @@ function t1 = newtonRhapson(ftol, T, i)
     t0 = T;
     while true
         t1 = t0 - (f(t0, i) / dPp(t0, i));
-        f = f(t1, i);
-        if abs(f) < ftol
+        ft = f(t1, i);
+        if abs(ft) < ftol
             break;
         else
             t0 = t1;
@@ -50,3 +46,6 @@ function t1 = newtonRhapson(ftol, T, i)
     end
 end
 
+function z = f(x, y)
+    z = 2.8*x^2*(x^2*(2.5*x^2+y^2-2)+1.2*y^2*(y*(3*y-0.75)-6.0311)+3.09) + 0.98*y^2*((y^2-3.01)*y^2+3) - 1.005;
+end
