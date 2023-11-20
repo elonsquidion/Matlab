@@ -6,20 +6,20 @@ clc
 % u(1,t) = 1
 % u(x=0:1,0) = 0
 
-tspan = 0.1:0.1:0.9;
-uawal = zeros(1, length(tspan)-2);
+x = 0:0.05:1;
+u0 = zeros(21, 1);
+u0(1) = 1;
+u0(end) = 1;
 
-[t, u] = ode23(@pdp, tspan, uawal);
+tspan = [0 1];
 
-u = [ones(9, 1) u ones(9, 1)];
-surf(u);
-xlabel('x');
-ylabel('t');
-zlabel('u');
+[t, u] = ode23(@pdp, tspan, u0);
+
+surf(x, t, u);
 
 function dudt = pdp(~, u) % central method
     v = 1;
-    h = 0.1;
+    h = 0.05;
     dudt = zeros(length(u), 1);
     dudt(1) = -v*(u(2) - 1)/(2*h) + (u(2)-2*u(1)+1)/(h^2);
     for i = 2:length(dudt)-1
