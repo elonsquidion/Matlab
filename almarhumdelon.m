@@ -5,10 +5,16 @@ tspan = [0 10];
 y0 = [10 0 0 0];
 [t, C]= ode23(@furuka, tspan, y0);
 
-plot(t, C(:,1), 'r');
-plot(t, C(:,2), 'b');
-plot(t, C(:,3), 'p');
-plot(t, C(:,4), 'g');
+plot(t, C(:,1), 'DisplayName', 'CA');
+hold on;
+plot(t, C(:,2), 'DisplayName', 'CB');
+hold on;
+plot(t, C(:,3), 'DisplayName', 'CC');
+hold on;
+plot(t, C(:,4), 'DisplayName', 'CD');
+
+legend('show');
+legend('Location','best');
 
 
 function dy = furuka(~,y)

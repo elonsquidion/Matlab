@@ -1,7 +1,7 @@
-x0 = 2;
+x0 = 5;
 
 xnobrain = fzero(@setimbang, x0);
-disp(xnobrain);
+fprintf("Hasil perhitungan no brain %f\n", xnobrain);
 x1 = x0;
 
 while abs(setimbang(x1)) >= 1e-6
@@ -9,7 +9,7 @@ while abs(setimbang(x1)) >= 1e-6
     x1 = x0 - setimbang(x0)/dsetimbang(x0);
 end
 
-disp(x1);
+fprintf("Hasil perhitungan megamind %f\n", x1);
 
 function df = dsetimbang(x)
     h = 1e-6;
